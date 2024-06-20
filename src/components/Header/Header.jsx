@@ -1,4 +1,4 @@
-import Styles from "./Header.module.css";
+import styles from "./Header.module.css";
 import { Overlay } from "../Overlay/Overlay";
 import { Popup } from "../Popup/Popup";
 import { TaskForm } from "../TaskForm/TaskForm";
@@ -12,44 +12,52 @@ export const Header = (props) => {
 		setPopupIsOpened(true);
 	};
 
+	const closeTargetPopup = (e) => {
+		if (e.target === e.currentTarget)
+		setPopupIsOpened(false);
+	};
+
 	const closePopup = () => {
 		setPopupIsOpened(false);
 	};
 
 	return (
-		<header className={Styles.header}>
-			<div className={Styles["header__logo-container"]}>
+		<header className={styles.header}>
+			<div className={styles["header__logo-container"]}>
 				<img
 					src="/public/logo.svg"
 					alt="logo"
-					className={Styles["header__logo"]}
+					className={styles["header__logo"]}
 				/>
-				<a href="/" className={Styles["header__link"]}>
+				<a href="/" className={styles["header__link"]}>
 					Tasker
 				</a>
 			</div>
-			<div className={Styles["header__nav-and-button"]}>
-				<nav className={Styles["header__navigation"]}>
-					<ul className={Styles["header__nav-list"]}>
-						<li className={Styles["header__nav-item"]}>
-							Доска
+			<div className={styles["header__nav-and-button"]}>
+				<nav className={styles["header__navigation"]}>
+					<ul className={styles["header__nav-list"]}>
+						<li className={styles["header__nav-item"]}>Доска</li>
+						<li className={styles["header__nav-item"]}>Сроки</li>
+						<li className={styles["header__nav-item"]}>
+							Достижения
 						</li>
-						<li className={Styles["header__nav-item"]}>Сроки</li>
-						<li className={Styles["header__nav-item"]}>Достижения</li>
 					</ul>
 				</nav>
-				<button className={Styles["header__btn"]} onClick={openPopup}>
+				<button className={styles["header__btn"]} onClick={openPopup}>
 					Новая задача
 				</button>
 			</div>
-			<Overlay isOpened={popupIsOpened} closePopup={closePopup} />
-			<Popup isOpened={popupIsOpened} сlosePopup={closePopup}>
-				<TaskForm
-					close={closePopup}
-					refreshPage={props.refreshPage}
-					operation="add"
-				/>
-			</Popup>
+			{popupIsOpened && (
+					<Overlay isOpened={popupIsOpened} closePopup={closeTargetPopup}>
+					<Popup isOpened={popupIsOpened} сlosePopup={closePopup}>
+						<TaskForm
+							close={closePopup}
+							refreshPage={props.refreshPage}
+							operation="add"
+						/>
+					</Popup>
+					</Overlay>
+			)}
 		</header>
 	);
 };

@@ -1,10 +1,10 @@
-import Styles from "./Preloader.module.css"
+import styles from "./Preloader.module.css"
 
 export const Preloader = () => {
   return (
     <div
       style={{ aspectRatio: "16/9", display: "grid", placeItems: "center" }}
-      className={Styles["preloader"]}
+      className={styles["preloader"]}
     >
       <svg
         style={{ width: "10vw" }}

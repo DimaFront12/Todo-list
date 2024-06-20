@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { endpoints } from "../api/config";
 export const useGetTasks = (refreshPageFlag) => {
-	const [tasks, setTasks] = useState(null);
+	const [tasks, setTasks] = useState([]);
 
 	useEffect(() => {
 		const getTasks = async () => {

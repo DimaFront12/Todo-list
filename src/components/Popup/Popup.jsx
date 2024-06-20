@@ -1,11 +1,11 @@
-import Styles from "./Popup.module.css";
+import styles from "./Popup.module.css";
 import PropTypes from 'prop-types';
 export const Popup = (props) => {
   return (
-    <div className={`${Styles["popup"]} ${props.isOpened && Styles["popup_is-opened"]}`}>
-      <button className={Styles["close"]} onClick={props.сlosePopup}>
+    <div className={`${styles["popup"]} ${props.isOpened && styles["popup_is-opened"]}`}>
+      <button className={styles["close"]} onClick={props.сlosePopup}>
         <svg
-          className={Styles["close-icon"]}
+          className={styles["close-icon"]}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 16 25"
@@ -16,7 +16,7 @@ export const Popup = (props) => {
           />
         </svg>
       </button>
-      <div className={Styles.content}>{props.children}</div>
+      <div className={styles.content}>{props.children}</div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import Styles from "./TaskForm.module.css";
+import styles from "./TaskForm.module.css";
 import { useState, useEffect } from "react";
 import { useAddTask } from "../../apiHooks/useAddTask";
 import { useUpdateTask } from "../../apiHooks/useUpdateTask";
@@ -11,7 +11,7 @@ export const TaskForm = (props) => {
 		completed: false,
 	});
 	const [message, setMessage] = useState({ status: null, text: null });
-	
+
 	const { isAdded, addTask } = useAddTask(props.refreshPage);
 	const { isUpdated, updateTask } = useUpdateTask(props.refreshPage)
 
@@ -42,14 +42,14 @@ export const TaskForm = (props) => {
 	}, [message.status]);
 
 	return (
-		<form className={Styles["form"]} onSubmit={handleSubmit}>
-			<h2 className={Styles["form__title"]}>Добавить задачу</h2>
-			<div className={Styles["form__fields"]}>
-				<label className={Styles["form__field"]}>
-					<span className={Styles["form__field-title"]}>Задача</span>
+		<form className={styles["form"]} onSubmit={handleSubmit}>
+			<h2 className={styles["form__title"]}>Добавить задачу</h2>
+			<div className={styles["form__fields"]}>
+				<label className={styles["form__field"]}>
+					<span className={styles["form__field-title"]}>Задача</span>
 					<input
 						onChange={onChange}
-						className={Styles["form__field-input"]}
+						className={styles["form__field-input"]}
 						name="title"
 						type="text"
 						placeholder="Название задачи"
@@ -57,14 +57,14 @@ export const TaskForm = (props) => {
 				</label>
 			</div>
 			{message.status && (
-				<p className={Styles["form__message"]}>{message.text}</p>
+				<p className={styles["form__message"]}>{message.text}</p>
 			)}
-			<div className={Styles["form__actions"]}>
-				<button className={Styles["form__reset"]} type="reset">
+			<div className={styles["form__actions"]}>
+				<button className={styles["form__reset"]} type="reset">
 					Очистить
 				</button>
 				<button
-					className={Styles["form__submit"]}
+					className={styles["form__submit"]}
 					type="submit"
 					disabled={isAdded && isUpdated}
 				>

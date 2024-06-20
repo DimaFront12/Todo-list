@@ -1,4 +1,4 @@
-import Styles from "./Task.module.css";
+import styles from "./Task.module.css";
 import PropTypes from "prop-types";
 import { Overlay } from "../Overlay/Overlay";
 import { Popup } from "../Popup/Popup";
@@ -15,10 +15,14 @@ export const Task = (props) => {
 		setPopupIsOpened(true);
 	};
 
-	const closePopup = () => {
+	const closeTargetPopup = (e) => {
+		if (e.target === e.currentTarget)
 		setPopupIsOpened(false);
 	};
 
+	const closePopup = () => {
+		setPopupIsOpened(false);
+	};
 
 	const handleDeleteTask = () => {
 		deleteTask(endpoints.todos, props.id);
@@ -26,18 +30,21 @@ export const Task = (props) => {
 
 	return (
 		<>
-			<label className={Styles.task}>
-				<div className={Styles["task__container"]}>
+			<label className={styles.task}>
+				<div className={styles["task__container"]}>
 					<input type="checkbox" />
-					<span className={Styles["task__custom-checkbox"]}></span>
-					<span className={Styles["task__title"]}>{props.title}</span>
+					<span className={styles["task__custom-checkbox"]}></span>
+					<span className={styles["task__title"]}>{props.title}</span>
 				</div>
-				<div className={Styles["task__buttons"]}>
-					<button className={Styles["task__button"]} onClick={openPopup}>
+				<div className={styles["task__buttons"]}>
+					<button
+						className={styles["task__button"]}
+						onClick={openPopup}
+					>
 						Редактировать
 					</button>
 					<button
-						className={Styles["task__button"]}
+						className={styles["task__button"]}
 						onClick={handleDeleteTask}
 						disabled={isDeleted}
 					>
@@ -45,15 +52,18 @@ export const Task = (props) => {
 					</button>
 				</div>
 			</label>
-			<Overlay isOpened={popupIsOpened} closePopup={closePopup} />
-			<Popup isOpened={popupIsOpened} сlosePopup={closePopup}>
-				<TaskForm
-					close={closePopup}
-					refreshPage={props.refreshPage}
-					operation="update"
-					id={props.id}
-				/>
-			</Popup>
+			{popupIsOpened && (
+					<Overlay isOpened={popupIsOpened} closePopup={closeTargetPopup}>
+					<Popup isOpened={popupIsOpened} сlosePopup={closePopup}>
+						<TaskForm
+							close={closePopup}
+							refreshPage={props.refreshPage}
+							operation="update"
+							id={props.id}
+						/>
+					</Popup>
+					</Overlay>
+			)}
 		</>
 	);
 };

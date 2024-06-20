@@ -109,11 +109,6 @@
       "id": 27,
       "title": "Обновить резюме",
       "completed": "false"
-    },
-    {
-      "title": "Починить кран",
-      "completed": false,
-      "id": 28
     }
   ]
 }
