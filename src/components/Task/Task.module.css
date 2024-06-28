@@ -1,7 +1,7 @@
 .task {
 	background-color: #F0F2F5;
 	border-bottom: 1px solid #BAC4CF;
-	padding: 10px 10px;
+	padding: 20px 20px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -36,7 +36,18 @@
 }
 
 .task__title {
+	width: 450px;
 	margin-left: 10px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-decoration: none;
+	color: black;
+}
+
+.task__title:hover {
+	cursor: pointer;
+	opacity: .6;
 }
 
 .task__buttons {

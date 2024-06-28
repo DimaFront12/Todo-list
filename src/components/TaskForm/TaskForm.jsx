@@ -13,21 +13,27 @@ export const TaskForm = (props) => {
 	const [message, setMessage] = useState({ status: null, text: null });
 
 	const { isAdded, addTask } = useAddTask(props.refreshPage);
-	const { isUpdated, updateTask } = useUpdateTask(props.refreshPage)
+	const { isUpdated, updateTask } = useUpdateTask(props.refreshPage);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (todoData.title) {
 			props.operation === "add" && addTask(endpoints.todos, todoData);
-			props.operation === "update" && updateTask(endpoints.todos, props.id, todoData)
-			setMessage({ status: "success", text: `Задача ${props.operation === "add" ? "добавлена" : "обновлена"}!` });
+			props.operation === "update" &&
+				updateTask(endpoints.todos, props.id, todoData);
+			setMessage({
+				status: "success",
+				text: `Задача ${
+					props.operation === "add" ? "добавлена" : "обновлена"
+				}!`,
+			});
 		} else {
 			setMessage({ status: "error", text: "Введите задачу!" });
 		}
 	};
 
 	const onChange = (e) => {
-		setTodoData({...todoData, [e.target.name]: e.target.value});
+		setTodoData({ ...todoData, [e.target.name]: e.target.value });
 	};
 
 	useEffect(() => {
@@ -39,16 +45,17 @@ export const TaskForm = (props) => {
 			}, 1000);
 		}
 		return () => clearTimeout(timer);
-	}, [message.status]);
+	}, [props, message.status]);
 
 	return (
 		<form className={styles["form"]} onSubmit={handleSubmit}>
-			<h2 className={styles["form__title"]}>Добавить задачу</h2>
+			<h2 className={styles["form__title"]}>{props.operation === "update" ? "Редактировать" : "Добавить"} задачу</h2>
 			<div className={styles["form__fields"]}>
 				<label className={styles["form__field"]}>
 					<span className={styles["form__field-title"]}>Задача</span>
 					<input
 						onChange={onChange}
+						value={todoData.title}
 						className={styles["form__field-input"]}
 						name="title"
 						type="text"
@@ -68,7 +75,7 @@ export const TaskForm = (props) => {
 					type="submit"
 					disabled={isAdded && isUpdated}
 				>
-					Добавить задачу
+					{props.operation === "update" ? "Редактировать" : "Добавить"} задачу
 				</button>
 			</div>
 		</form>
@@ -79,5 +86,6 @@ TaskForm.propTypes = {
 	close: PropTypes.func,
 	refreshPage: PropTypes.func,
 	operation: PropTypes.string,
-	id: PropTypes.number,
+	text: PropTypes.string,
+	id: PropTypes.string,
 };

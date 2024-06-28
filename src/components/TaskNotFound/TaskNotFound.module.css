@@ -1,0 +1,27 @@
+.pageNotFound {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	text-align: center;
+}
+
+.title, .text {
+	margin: 0;
+}
+
+.text {
+	font-size: 18px;
+}
+
+.link {
+	color: black;
+}

@@ -3,18 +3,20 @@ import { Overlay } from "../Overlay/Overlay";
 import { Popup } from "../Popup/Popup";
 import { TaskForm } from "../TaskForm/TaskForm";
 import { useState } from "react";
+import { Link, useMatch } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export const Header = (props) => {
 	const [popupIsOpened, setPopupIsOpened] = useState(false);
+
+	const mainPageUrl = useMatch("/");
 
 	const openPopup = () => {
 		setPopupIsOpened(true);
 	};
 
 	const closeTargetPopup = (e) => {
-		if (e.target === e.currentTarget)
-		setPopupIsOpened(false);
+		if (e.target === e.currentTarget) setPopupIsOpened(false);
 	};
 
 	const closePopup = () => {
@@ -29,9 +31,9 @@ export const Header = (props) => {
 					alt="logo"
 					className={styles["header__logo"]}
 				/>
-				<a href="/" className={styles["header__link"]}>
+				<Link to="/" className={styles["header__link"]}>
 					Tasker
-				</a>
+				</Link>
 			</div>
 			<div className={styles["header__nav-and-button"]}>
 				<nav className={styles["header__navigation"]}>
@@ -43,12 +45,17 @@ export const Header = (props) => {
 						</li>
 					</ul>
 				</nav>
-				<button className={styles["header__btn"]} onClick={openPopup}>
-					Новая задача
-				</button>
+				{mainPageUrl && (
+					<button
+						className={styles["header__btn"]}
+						onClick={openPopup}
+					>
+						Новая задача
+					</button>
+				)}
 			</div>
 			{popupIsOpened && (
-					<Overlay isOpened={popupIsOpened} closePopup={closeTargetPopup}>
+				<Overlay isOpened={popupIsOpened} closePopup={closeTargetPopup}>
 					<Popup isOpened={popupIsOpened} сlosePopup={closePopup}>
 						<TaskForm
 							close={closePopup}
@@ -56,7 +63,7 @@ export const Header = (props) => {
 							operation="add"
 						/>
 					</Popup>
-					</Overlay>
+				</Overlay>
 			)}
 		</header>
 	);

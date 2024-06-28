@@ -65,10 +65,10 @@ export const TasksList = (props) => {
 					<ul className={styles["tasks-container__tasks"]}>
 						{filteredArray.map((data) => (
 							<li key={data.id}>
-								<Task
-									{...data}
-									refreshPage={props.refreshPage}
-								/>
+									<Task
+										{...data}
+										refreshPage={props.refreshPage}
+									/>
 							</li>
 						))}
 					</ul>
