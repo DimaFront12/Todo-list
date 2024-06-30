@@ -2,14 +2,17 @@ import styles from "./TasksList.module.css";
 import { Task } from "../Task/Task";
 import { Preloader } from "../Preloader/Preloader";
 import { useGetTasks } from "../../apiHooks/useGetTasks";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { RefreshPageContext } from "../../context/refreshPageContext";
 import PropTypes from "prop-types";
-export const TasksList = (props) => {
+export const TasksList = () => {
 	const [valueInput, setValueInput] = useState("");
 	const [isSorted, setIsSorted] = useState(false);
 	const [filteredArray, setFilteredArray] = useState([]);
 
-	const tasks = useGetTasks(props.refreshPageFlag);
+	const { refreshPageFlag } = useContext(RefreshPageContext)
+
+	const tasks = useGetTasks(refreshPageFlag);
 
 	useEffect(() => {
 		if (!tasks) {
@@ -65,10 +68,9 @@ export const TasksList = (props) => {
 					<ul className={styles["tasks-container__tasks"]}>
 						{filteredArray.map((data) => (
 							<li key={data.id}>
-									<Task
-										{...data}
-										refreshPage={props.refreshPage}
-									/>
+								<Task
+									{...data}
+								/>
 							</li>
 						))}
 					</ul>
@@ -78,10 +80,4 @@ export const TasksList = (props) => {
 			)}
 		</div>
 	);
-};
-
-TasksList.propTypes = {
-	refreshPageFlag: PropTypes.bool,
-	setRefreshPageFlag: PropTypes.func,
-	refreshPage: PropTypes.func,
 };

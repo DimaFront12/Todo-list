@@ -51,6 +51,11 @@
       "completed": "false"
     },
     {
+      "id": 16,
+      "title": "Оплатить счета",
+      "completed": "false"
+    },
+    {
       "id": 17,
       "title": "Написать письмо",
       "completed": "true"
@@ -59,6 +64,51 @@
       "id": 18,
       "title": "Заняться садом",
       "completed": "false"
+    },
+    {
+      "id": 19,
+      "title": "Починить велосипед",
+      "completed": "true"
+    },
+    {
+      "id": 20,
+      "title": "Подготовиться к собеседованию",
+      "completed": "false"
+    },
+    {
+      "id": 21,
+      "title": "Проверить почту",
+      "completed": "true"
+    },
+    {
+      "id": 22,
+      "title": "Сделать резервную копию",
+      "completed": "false"
+    },
+    {
+      "id": 23,
+      "title": "Сходить на массаж",
+      "completed": "false"
+    },
+    {
+      "id": 24,
+      "title": "Организовать фотоальбом",
+      "completed": "true"
+    },
+    {
+      "id": 25,
+      "title": "Посетить музей",
+      "completed": "false"
+    },
+    {
+      "id": 26,
+      "title": "Устроить пикник",
+      "completed": "true"
+    },
+    {
+      "title": "Обновить резюме",
+      "completed": false,
+      "id": 27
     }
   ]
 }
